@@ -107,19 +107,95 @@ main {
 }
 
 /*bloc tri*/
-.form-select {
+.select-form {
+  position: relative;
+  display: inline-block;
   margin-right: 60px;
   width: 195px;
   border: none;
   border-radius: 10px;
+  background-color: #ffffff;
 }
 
-/*retire le style de Bootstrap lors du focus*/
-.form-select:focus {
-  box-shadow: none;
+.select-form.active {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
-.form-select option:hover {
+.open-form-select {
+  display: none;
+  position: absolute;
+  z-index: 999;
+  width: 195px;
+  background-color: #ffffff;
+}
+
+.open-form-select.active {
+  display: block;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.select-form-title {
+  position: relative;
+  padding-top: 15px;
+  padding-left: 10px;
+  font-weight: 600;
+}
+
+.select-form-icon {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+}
+
+/*container input*/
+.search-container {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+/*input search container*/
+#search-input {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px 55px 10px 10px;
+  width: 90%;
+  height: 35px;
+  border: 1px solid #ccc;
+}
+
+#search-input:focus-visible {
+  outline: none;
+}
+
+.icon {
+  position: absolute;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#search-icon {
+  top: 6px;
+  right: 20px;
+}
+
+#clear-icon {
+  top: 3px;
+  right: 45px;
+  color: #999;
+  display: none;
+  font-size: 20px;
+}
+
+/*option du selectForm*/
+.select-form option {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+}
+
+.select-form option:hover {
   background-color: #FFD15B !important;
 }
 
