@@ -1,0 +1,311 @@
+@charset "UTF-8";
+body {
+  background-image: url("../ressources/header.jpg");
+  background-size: contain;
+  background-position: center -225px;
+  background-repeat: no-repeat;
+  font-family: "Manrope", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.323);
+}
+
+.header-logo {
+  position: absolute;
+  top: 20px;
+  left: 50px;
+  width: 180px;
+}
+
+/*container des informations de l'header*/
+.header-informations {
+  margin-top: 225px;
+  width: 954px;
+}
+
+/*slogan*/
+.header-informations h1 {
+  padding: 0 80px;
+  margin-bottom: 50px;
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 44px;
+  color: #FFD15B;
+}
+
+/*container de la search bar*/
+.search-bar {
+  position: relative;
+  margin-bottom: 348px;
+}
+
+.search-bar-clear-icon {
+  position: absolute;
+  right: 50px;
+}
+
+/*champ de la search bar*/
+#search-input {
+  padding-left: 30px;
+  padding-right: 80px;
+  height: 70px;
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+}
+
+#search-input:focus {
+  outline: none;
+}
+
+/*bouton de la search bar*/
+.search-btn {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  padding: 15px 10px;
+  transform: translateY(-50%);
+  border: none;
+  border-radius: 12px;
+  background-color: black;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.search-btn:hover {
+  background-color: #FFD15B;
+  color: black;
+}
+
+.search-btn:active, .search-btn:focus {
+  box-shadow: none;
+}
+
+main {
+  position: relative;
+  margin-top: -100px;
+  background-color: #ececee;
+}
+
+.bloc-total-recettes {
+  position: absolute;
+  top: 25px;
+  right: 80px;
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 21px;
+}
+
+/*container tri par ingrédients, appareils et ustensibles*/
+.search-options-container {
+  display: flex;
+  padding-top: 15px;
+  margin-left: 115px;
+  margin-bottom: 50px;
+}
+
+/*bloc tri*/
+.select-form {
+  position: relative;
+  display: inline-block;
+  margin-right: 60px;
+  width: 195px;
+  border: none;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+
+.select-form.active {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.open-form-select {
+  display: none;
+  position: absolute;
+  z-index: 999;
+  width: 195px;
+  background-color: #ffffff;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.open-form-select.active {
+  display: block;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  height: 285px;
+}
+
+/* Personnaliser la largeur de la barre de défileme*/
+.open-form-select::-webkit-scrollbar {
+  color: transparent;
+  background-color: transparent;
+  width: 0px;
+}
+
+.select-form-title {
+  position: relative;
+  padding-top: 15px;
+  padding-left: 10px;
+  font-weight: 600;
+}
+
+.select-form-icon {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+}
+
+/*container input*/
+.search-container {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+/*input search container*/
+.search-input {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px 55px 10px 10px;
+  width: 85%;
+  height: 35px;
+  border: 1px solid #ccc;
+}
+
+.search-input:focus-visible {
+  outline: none;
+}
+
+.icon {
+  position: absolute;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.search-icon {
+  top: 6px;
+  right: 25px;
+}
+
+.clear-icon {
+  top: 3px;
+  right: 50px;
+  color: #999;
+  display: none;
+  font-size: 20px;
+}
+
+/*option du selectForm*/
+.select-form option {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+}
+
+.select-form option:hover {
+  background-color: #FFD15B !important;
+}
+
+/*container des cards*/
+.cards-container {
+  margin-left: 100px;
+  margin-right: 100px;
+  padding-bottom: 50px;
+}
+
+/*card d'un ingrédient*/
+.card {
+  width: 380px;
+  height: 731px;
+  border: none;
+  border-radius: 20px;
+}
+
+/*contenu de la card*/
+.card-body {
+  padding-left: 20px;
+}
+
+/*temps préparation recette*/
+.card-time {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding-top: 5px;
+  width: 65px;
+  height: 26px;
+  border-radius: 14px;
+  text-align: center;
+  font-size: 12px;
+  background-color: #FFD15B;
+}
+
+.card-img-top {
+  width: 380px;
+  height: 253px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  object-fit: cover;
+}
+
+/*nom recette*/
+.card h2 {
+  margin-top: 20px;
+  margin-bottom: 25px;
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px;
+}
+
+/*titre recette et ingrédients*/
+.card b {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: #7A7A7A;
+}
+
+/*instructions recette*/
+.card p {
+  margin-top: 10px;
+  margin-bottom: 25px;
+  font-weight: 400;
+}
+
+/*container des ingrédients d'une card*/
+.card-ingredients-group {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+/*bloc ingrédient*/
+.card-ingredient {
+  width: 50%;
+  margin-bottom: 10px;
+}
+
+/*nom ingrédient*/
+.card-ingredient p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/*quantité ingrédient*/
+.card-ingredient span {
+  font-size: 14px;
+  font-weight: 400;
+  color: #7A7A7A;
+}
+
+/*# sourceMappingURL=style.css.map */
