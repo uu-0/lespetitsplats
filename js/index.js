@@ -4,5 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     blocTotalRecettes.innerHTML = recipes.length + " recettes";
 
     displayRecipes(recipes);
+
+    
     
 });
