@@ -1,9 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
     //total des recettes
-    const blocTotalRecettes = document.querySelector('.bloc-total-recettes');
-    blocTotalRecettes.innerHTML = recipes.length + " recettes";
+    function updateTotalRecipes(recettes){
+        const blocTotalRecettes = document.querySelector('.bloc-total-recettes');
+        const nombreRecettes = recettes.length;
+
+        blocTotalRecettes.innerHTML = " ";
+        blocTotalRecettes.innerHTML = nombreRecettes + " recettes";
+    }
 
     displayRecipes(recipes);
+    updateTotalRecipes(recipes);
 
     
     
