@@ -1,0 +1,83 @@
+header {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.323);
+}
+
+.header-logo {
+  position: absolute;
+  top: 20px;
+  left: 50px;
+  width: 180px;
+}
+
+/*container des informations de l'header*/
+.header-informations {
+  margin-top: 225px;
+  width: 954px;
+}
+
+/*slogan*/
+.header-informations h1 {
+  padding: 0 80px;
+  margin-bottom: 50px;
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 44px;
+  color: #FFD15B;
+}
+
+.alert {
+  width: 310px;
+  font-size: 14px;
+}
+
+/*container de la search bar*/
+.search-bar {
+  position: relative;
+  margin-bottom: 348px;
+}
+
+.search-bar-clear-icon {
+  position: absolute;
+  right: 50px;
+}
+
+/*champ de la search bar*/
+#search-input {
+  padding-left: 30px;
+  padding-right: 80px;
+  height: 70px;
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+}
+
+#search-input:focus {
+  outline: none;
+}
+
+/*bouton de la search bar*/
+.search-btn {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  padding: 15px 10px;
+  transform: translateY(-50%);
+  border: none;
+  border-radius: 12px;
+  background-color: black;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.search-btn:hover {
+  background-color: #FFD15B;
+  color: black;
+}
+
+.search-btn:active, .search-btn:focus {
+  box-shadow: none;
+}
+
+/*# sourceMappingURL=header.css.map */

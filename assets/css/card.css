@@ -1,0 +1,96 @@
+@charset "UTF-8";
+/*container des cards*/
+.cards-container {
+  margin-left: 100px;
+  margin-right: 100px;
+  padding-bottom: 50px;
+}
+
+/*card d'un ingrédient*/
+.card {
+  width: 380px;
+  height: 731px;
+  border: none;
+  border-radius: 20px;
+}
+
+/*contenu de la card*/
+.card-body {
+  padding-left: 20px;
+}
+
+/*temps préparation recette*/
+.card-time {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding-top: 5px;
+  width: 65px;
+  height: 26px;
+  border-radius: 14px;
+  text-align: center;
+  font-size: 12px;
+  background-color: #FFD15B;
+}
+
+.card-img-top {
+  width: 380px;
+  height: 253px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  object-fit: cover;
+}
+
+/*nom recette*/
+.card h2 {
+  margin-top: 20px;
+  margin-bottom: 25px;
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px;
+}
+
+/*titre recette et ingrédients*/
+.card b {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: #7A7A7A;
+}
+
+/*instructions recette*/
+.card p {
+  margin-top: 10px;
+  margin-bottom: 25px;
+  font-weight: 400;
+}
+
+/*container des ingrédients d'une card*/
+.card-ingredients-group {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+/*bloc ingrédient*/
+.card-ingredient {
+  width: 50%;
+  margin-bottom: 10px;
+}
+
+/*nom ingrédient*/
+.card-ingredient p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/*quantité ingrédient*/
+.card-ingredient span {
+  font-size: 14px;
+  font-weight: 400;
+  color: #7A7A7A;
+}
+
+/*# sourceMappingURL=card.css.map */
