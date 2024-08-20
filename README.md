@@ -1,4 +1,4 @@
-# les petits plats ![logo](./assets/ressources/logo.png)
+# ![logo](./assets/ressources/logo.png)
 
 Le projet consiste à développer un algorithme de recherche efficace pour une plateforme de recettes de cuisine.
 
