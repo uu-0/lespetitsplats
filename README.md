@@ -27,5 +27,8 @@ Durant tout le projet, il faudra prendre en compte les principes du Green Code, 
 - une version en programmation fonctionnelle avec les méthodes de l'objet array (foreach, filter, map, reduce)
 5. choisir le meilleur algorithme en testant leur performance ([jsben.ch](https://jsben.ch/))
 
+## analyse des performances 
+
+![résultat analyse jsben.ch](./result.png)
 
 
