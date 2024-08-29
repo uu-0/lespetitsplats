@@ -38,7 +38,7 @@ main {
   display: flex;
   padding-top: 15px;
   margin-left: 115px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 /*bloc tri*/
@@ -71,7 +71,7 @@ main {
   display: block;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  height: 285px;
+  max-height: 285px;
 }
 
 /*personnalise la largeur de la barre de défilement*/
@@ -108,6 +108,7 @@ main {
   width: 85%;
   height: 35px;
   border: 1px solid #ccc;
+  font-size: 14px;
 }
 
 .search-input:focus-visible {
@@ -135,13 +136,64 @@ main {
 
 /*option du selectForm*/
 .select-form option {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 10px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 14px;
+  padding-right: 14px;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .select-form option:hover {
-  background-color: #FFD15B !important;
+  background-color: #FFD15B;
+}
+
+.option-clicked {
+  background-color: #FFD15B;
+  position: relative;
+  font-weight: 700;
+}
+
+.option-clicked::after {
+  position: absolute;
+  padding: 10px;
+  top: 13px;
+  right: 5px;
+  height: 25px;
+  width: auto;
+  transform: translateY(-50%);
+  content: url("../ressources/closeOption.png");
+}
+
+/*tag container*/
+.tag-container-search-options {
+  margin-left: 110px;
+  margin-right: 110px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+/*tag élément*/
+.tag {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  width: 203px;
+  height: 53px;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: #FFD15B;
+}
+
+.remove-tag {
+  font-size: 30px;
+  font-weight: 600;
 }
 
 /*# sourceMappingURL=style.css.map */
