@@ -5,45 +5,85 @@ document.addEventListener('DOMContentLoaded', () => {
     const alert = document.querySelector('.alert');
         
     //event listenner sur l'input #search-input
-    searchInput.addEventListener('input', function() {
-        //recette cherchée par l'user
-        const inputRecipe = searchInput.value;
+    searchInput.addEventListener('input', inputChangeGestion);
 
-        //si l'input est vide, affiche les recettes non filtrées
-        //trim() permet de supprimer les espaces blancs, donc même si l'user entre des espaces on affiche les recettes nn filtrées
-        if (inputRecipe.trim() === '') {
-            //cache l'icône de clear si l'input est vide
-            clearIcon.style.display = 'none'; 
-        }else if (inputRecipe.length <3){
+    //gère les changements de l'input
+    function inputChangeGestion() {
+        const inputRecipe = searchInput.value.trim();
+        
+        //input vide
+        if (inputRecipe === '') {
+            hideClearIcon();
+            hideAlert();
+            return;
+        }
+
+        //caractères non conformes dans l'input
+        if (!isValidInput(inputRecipe)) {
+            showAlert("Seuls les lettres, chiffres et espaces sont autorisés");
+            return;
+        }
+
+        //moins de 3 caractères dans l'input
+        if (inputRecipe.length < 3) {
             displayRecipes(recipes);
             updateTotalRecipes(recipes);
-            //affiche l'alerte si moins de 3 caractères
-            alert.classList.add('show');
-            alert.classList.remove('fade');
-            clearIcon.style.display = 'block';
-        }else{
-            const filteredRecipes = rechercher_recette_programmation_fonctionnelle(recipes, inputRecipe);
-            displayRecipes(filteredRecipes);
-            clearIcon.style.display = 'block'; // Afficher l'icône de clear s'il y a du texte
+            showAlert("Veuillez entrer au moins 3 caractères");
+            showClearIcon();
+            return;
         }
-    });
 
+        //si les conditions sont respectées, on tri les recettes
+        const filteredRecipes = rechercher_recette_programmation_fonctionnelle(recipes, inputRecipe);
+        displayRecipes(filteredRecipes);
+        showClearIcon();
+    }
+
+    //contrôle la valeur entrée dans l'input
+    function isValidInput(input) {
+        const pattern = /^[a-zA-Z0-9 ]+$/;
+        return pattern.test(input);
+    }
+    
+    //gestion des alertes: affiche l'alerte
+    function showAlert(message) {
+        alert.classList.add('show');
+        alert.classList.remove('fade');
+        alert.textContent = message;
+    }
+    
+    //gestion des alertes: cache l'alerte
+    function hideAlert() {
+        alert.classList.remove('show');
+        alert.classList.add('fade');
+    }
+    
+    //gestion clearIcon: affiche l'icône
+    function showClearIcon() {
+        clearIcon.style.display = 'block';
+    }
+    
+    //gestion clearIcon: cache l'icône
+    function hideClearIcon() {
+        clearIcon.style.display = 'none';
+    }
+
+    //event listener sur la clearIcon de l'input 
+    //affiche les recettes non filtrées + maj total de recette quand on vide l'input
     clearIcon.addEventListener('click', function() {
-        //affiche les recettes non filtrées + total quand on vide l'input
         displayRecipes(recipes); 
         updateTotalRecipes(recipes);
-        //vide l'input
         searchInput.value = '';
-        clearIcon.style.display = 'none';
+        hideClearIcon();
         searchInput.focus();
     });
 
+    //fonction pour rechercher une recette
     function rechercher_recette_programmation_fonctionnelle(recipes, inputRecipe) {
         //vérifie la longueur de la recette recherchée
         if (inputRecipe.length >= 3) {
             //masque l'alerte si 4 caractères ou plus
-            alert.classList.add('fade');
-            alert.classList.remove('show');
+            hideAlert()
 
             //converti la recette recherchée en minuscules
             let lowerInputRecipe = inputRecipe.toLowerCase();
@@ -67,12 +107,11 @@ document.addEventListener('DOMContentLoaded', () => {
             return filtredRecipesSet;
         }else{
             //affiche l'alerte si moins de 3 caractères
-            alert.classList.add('show');
-            alert.classList.remove('fade');
+            showAlert("Veuillez entrer au moins 3 caractères");
         }
     }
     
-    //total des recettes
+    //fonction pour maj le total des recettes
     function updateTotalRecipes(recettes){
         const blocTotalRecettes = document.querySelector('.bloc-total-recettes');
         const nombreRecettes = recettes.length;
@@ -81,6 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
         blocTotalRecettes.innerHTML = nombreRecettes + " recettes";
     }
 
+    //appel des fonctions pour afficher les recettes et maj le nb de recette
     displayRecipes(recipes);
     updateTotalRecipes(recipes);
 

@@ -29,8 +29,8 @@ header {
 }
 
 .alert {
-  width: 310px;
-  font-size: 14px;
+  max-width: 400px;
+  font-size: 12px;
 }
 
 /*container de la search bar*/

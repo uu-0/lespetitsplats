@@ -4,14 +4,28 @@ document.addEventListener("DOMContentLoaded", function () {
         const filterValue = inputElement.value.toLowerCase();
         const options = selectElement.querySelectorAll('option');
 
-        options.forEach(option => {
-            const optionText = option.textContent.toLowerCase();
-            if (optionText.includes(filterValue)) {
-                option.style.display = ''; //affiche  l'option
-            } else {
-                option.style.display = 'none'; //masque l'option
-            }
-        });
+        if (filterValue === '') {
+            //si le champ est vide on affiche toutes les options
+            options.forEach(option => {
+                option.style.display = '';
+            });
+        } else {
+            //sinon on applique le filtre
+            options.forEach(option => {
+                const optionText = option.textContent.toLowerCase();
+                if (optionText.includes(filterValue)) {
+                    option.style.display = ''; 
+                } else {
+                    option.style.display = 'none';
+                }
+            });
+        }
+    }
+
+     //contrôle la valeur entrée dans l'input
+     function isValidInput(input) {
+        const pattern = /^[a-zA-Z0-9 ]+$/;
+        return pattern.test(input);
     }
     
     //template pour afficher la liste des éléments dans un select-form, en fonction de l'id du select-form
@@ -66,17 +80,28 @@ document.addEventListener("DOMContentLoaded", function () {
         const input = selectElement.querySelector('.search-input');
         const clearIcon = selectElement.querySelector('.clear-icon');
 
-        //filtre les options et resize l'openformselect 
         input.addEventListener('input', function() {
-            if (input.value.trim() === '') { 
-                clearIcon.style.display = 'none';    
+            //input vide
+            if (input.value.trim() === '') {
+                clearIcon.style.display = 'none';
                 openFormSelect.style.height = '285px';
-            }else{
                 filterOptions(input, openFormSelect);
-                clearIcon.style.display = 'block'; 
-                openFormSelect.style.height = 'fit-content';
+                return;
             }
+            //caractère non conforme
+            if (!isValidInput(input.value)) {
+                clearIcon.style.display = 'block';
+                openFormSelect.style.height = '285px';
+                filterOptions(input, openFormSelect);
+                return;
+            }
+        
+            //filtre les options normalement si l'input est valide
+            filterOptions(input, openFormSelect);
+            clearIcon.style.display = 'block';
+            openFormSelect.style.height = 'fit-content';
         });
+        
         
         //vide l'input
         clearIcon.addEventListener('click', function() {
@@ -85,6 +110,8 @@ document.addEventListener("DOMContentLoaded", function () {
             input.focus();
         });
     }
+
+    
 
     /**
      * ajoute un tag(option) au container de tags
@@ -96,6 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function addTag(value, optionElement) {
         //container de tags
         const tagContainer = document.querySelector('.tag-container-search-options');
+
         //tag créé avec l'option
         const tagElement = document.createElement('div');
 
@@ -124,6 +152,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         //on ajoute l'élément créé à l'élément parent
         tagElement.appendChild(removeButton);
+        tagContainer.appendChild(tagElement);
+
+        
     }
 
     /**
@@ -140,6 +171,8 @@ document.addEventListener("DOMContentLoaded", function () {
             //on le retire du container de tag
             tagContainer.removeChild(tagElement);
         }
+
+        
     }
 
     //affiche la liste des ingrédients dans la liste d'option #ingredient-select
