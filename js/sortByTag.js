@@ -111,7 +111,45 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    
+    //fonction pour filtrer les recettes en fonction des tags sélectionnés
+    function filterRecipes() {
+        //on récupère les tags ajoutés au container
+        const selectedTags = Array.from(document.querySelectorAll('.tag-container-search-options .tag'))
+                                .map(tag => tag.getAttribute('data-tag-name').toLowerCase());
+
+        //filtre les recettes en fonction des tags
+        const filteredRecipes = recipes.filter(recipe => {
+            const recipeIngredients = recipe.ingredients.map(ing => ing.ingredient.toLowerCase());
+            const recipeAppliance = recipe.appliance.toLowerCase();
+            const recipeUstensils = recipe.ustensils.map(ust => ust.toLowerCase());
+
+            //vérifie si tous les tags sélectionnés sont présents dans la recette
+            return selectedTags.every(tag => 
+                recipeIngredients.includes(tag) ||
+                recipeAppliance === tag ||
+                recipeUstensils.includes(tag)
+                );
+            });
+
+            //mise à jour de l'affichage des recettes
+            displayRecipes(filteredRecipes);
+        }
+
+    function updateNbRecipes(){
+        const recettesContainer = document.querySelector('.cards-container');
+        const nbRecipes = recettesContainer.childElementCount;
+
+        const blocTotalRecettes = document.querySelector('.bloc-total-recettes');
+        
+        if (nbRecipes === 0){
+        blocTotalRecettes.innerHTML = " ";
+        blocTotalRecettes.innerHTML = 0 + " recettes";
+        }
+
+        //on vide le contenu actuel et on ajoute le nouveau total
+        blocTotalRecettes.innerHTML = " ";
+        blocTotalRecettes.innerHTML = nbRecipes + " recettes";
+    }
 
     /**
      * ajoute un tag(option) au container de tags
@@ -154,7 +192,8 @@ document.addEventListener("DOMContentLoaded", function () {
         tagElement.appendChild(removeButton);
         tagContainer.appendChild(tagElement);
 
-        
+        filterRecipes();
+        updateNbRecipes();
     }
 
     /**
@@ -172,7 +211,8 @@ document.addEventListener("DOMContentLoaded", function () {
             tagContainer.removeChild(tagElement);
         }
 
-        
+        filterRecipes();
+        updateNbRecipes();
     }
 
     //affiche la liste des ingrédients dans la liste d'option #ingredient-select
