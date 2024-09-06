@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (inputRecipe === '') {
             hideClearIcon();
             hideAlert();
+            filteredByInputRecipes = recipes;
             return;
         }
 
@@ -35,6 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //si les conditions sont respectées, on tri les recettes
         const filteredRecipes = rechercher_recette_programmation_fonctionnelle(recipes, inputRecipe);
+        //mise à jour de la variable avec les recettes filtrées
+        filteredByInputRecipes = filteredRecipes;
         displayRecipes(filteredRecipes);
         showClearIcon();
     }
@@ -69,11 +72,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     //event listener sur la clearIcon de l'input 
-    //affiche les recettes non filtrées + maj total de recette quand on vide l'input
+    //affiche les recettes non filtrées + maj total de recette quand on vide l'input + vide la liste des recettes filtrées
     clearIcon.addEventListener('click', function() {
         displayRecipes(recipes); 
         updateTotalRecipes(recipes);
+
         searchInput.value = '';
+        filteredByInputRecipes = recipes;
         hideClearIcon();
         searchInput.focus();
     });

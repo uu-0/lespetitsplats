@@ -30,8 +30,8 @@ document.addEventListener("DOMContentLoaded", function () {
     
     //template pour afficher la liste des éléments dans un select-form, en fonction de l'id du select-form
     function displayOptionsInSelectForm(items, selectId) {
-        //seuls les éléments uniques sont ajoutés au select
-        const uniqueItems = [...new Set(items)];
+        //seuls les éléments uniques sont ajoutés au select + on les tri par ordre alphabétique
+        const uniqueItems = [...new Set(items)].sort((a, b) => a.localeCompare(b));
         //on séléctionne l'élément ayant l'id renseigné 
         const selectElement = document.querySelector(`#${selectId}`);
         //on select le formulaire ouvert
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
         uniqueItems.forEach(function(item, index) {
             //on select les option du form-select
             const optionElement = document.createElement('option');
-            const optionName = item;
+            const optionName = item.charAt(0).toUpperCase() + item.slice(1);
             
             //on ajoute la valeur d'une option en l'incrémentant à chaque tour de boucle
             optionElement.setAttribute('value', index + 1);
@@ -111,29 +111,26 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    //fonction pour filtrer les recettes en fonction des tags sélectionnés
     function filterRecipes() {
-        //on récupère les tags ajoutés au container
         const selectedTags = Array.from(document.querySelectorAll('.tag-container-search-options .tag'))
                                 .map(tag => tag.getAttribute('data-tag-name').toLowerCase());
-
-        //filtre les recettes en fonction des tags
-        const filteredRecipes = recipes.filter(recipe => {
+    
+        const filteredRecipes = filteredByInputRecipes.filter(recipe => { // Utilise les recettes filtrées par l'input
             const recipeIngredients = recipe.ingredients.map(ing => ing.ingredient.toLowerCase());
             const recipeAppliance = recipe.appliance.toLowerCase();
             const recipeUstensils = recipe.ustensils.map(ust => ust.toLowerCase());
-
-            //vérifie si tous les tags sélectionnés sont présents dans la recette
+    
             return selectedTags.every(tag => 
                 recipeIngredients.includes(tag) ||
                 recipeAppliance === tag ||
                 recipeUstensils.includes(tag)
-                );
-            });
-
-            //mise à jour de l'affichage des recettes
-            displayRecipes(filteredRecipes);
-        }
+            );
+        });
+    
+        displayRecipes(filteredRecipes);
+        updateNbRecipes();
+    }
+    
 
     function updateNbRecipes(){
         const recettesContainer = document.querySelector('.cards-container');
