@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
         uniqueItems.forEach(function(item, index) {
             //on select les option du form-select
             const optionElement = document.createElement('option');
+            //on remplace le premier caractère par une maj et on add le reste des caractères
             const optionName = item.charAt(0).toUpperCase() + item.slice(1);
             
             //on ajoute la valeur d'une option en l'incrémentant à chaque tour de boucle
@@ -115,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const selectedTags = Array.from(document.querySelectorAll('.tag-container-search-options .tag'))
                                 .map(tag => tag.getAttribute('data-tag-name').toLowerCase());
     
-        const filteredRecipes = filteredByInputRecipes.filter(recipe => { // Utilise les recettes filtrées par l'input
+        const filteredRecipes = filteredByInputRecipes.filter(recipe => {
             const recipeIngredients = recipe.ingredients.map(ing => ing.ingredient.toLowerCase());
             const recipeAppliance = recipe.appliance.toLowerCase();
             const recipeUstensils = recipe.ustensils.map(ust => ust.toLowerCase());
