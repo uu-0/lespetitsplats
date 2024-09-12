@@ -102,14 +102,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 return titreMatch || ingredientMatch || descriptionMatch;
             });
         
-            //élimine les doublons en utilisant un ensemble (set)
-            //JSON.stringify(recipe): on transforme chaque élément recipe du tableau en chaîne de caractères JSON
-            const filtredRecipesSet = Array.from(new Set(filtredRecipes.map(recipe => JSON.stringify(recipe)))).map(recipeStr => JSON.parse(recipeStr));
-            
-            updateTotalRecipes(filtredRecipesSet);
+            updateTotalRecipes(filtredRecipes);
 
-            //return les recettes uniques
-            return filtredRecipesSet;
+            return filtredRecipes;
         }else{
             //affiche l'alerte si moins de 3 caractères
             showAlert("Veuillez entrer au moins 3 caractères");
