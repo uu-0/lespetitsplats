@@ -1775,3 +1775,5 @@ const recipes = [
     }
 ]
 
+//pour stocker les recettes filtrées
+let filteredByInputRecipes = recipes; 
